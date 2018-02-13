@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1 = null;// 按钮1
     Button btn2 = null;// 按钮2
     Context cn = null;// 上下文对象
 
@@ -24,10 +23,8 @@ public class MainActivity extends AppCompatActivity {
     //初始化方法
     private void init() {
         //获取按钮
-        btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
 
-        btn1.setOnClickListener(new MyClickListener());//添加监听
         btn2.setOnClickListener(new MyClickListener());//添加监听
     }
 
@@ -35,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
     class MyClickListener implements View.OnClickListener {
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.btn1:
-                    Toast.makeText(cn, "点击了按钮1", Toast.LENGTH_SHORT).show();
-                    break;
                 case R.id.btn2:
-                    Toast.makeText(cn, "点击了按钮2", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(cn, "点击了按钮2", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, WebViewActivity.class);
                     //利用bundle来存取数据
