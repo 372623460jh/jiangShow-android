@@ -35,7 +35,7 @@ public class commonMethod extends Object {
      * 打开启动屏
      */
     @JavascriptInterface
-    public void show() {
+    public void showStartScreen() {
         StartScreen.show(WebViewActivity.getCurrentActivity());
     }
 
@@ -43,7 +43,7 @@ public class commonMethod extends Object {
      * 关闭启动屏
      */
     @JavascriptInterface
-    public void hide() {
+    public void hideStartScreen() {
         StartScreen.hide(WebViewActivity.getCurrentActivity());
     }
 }
