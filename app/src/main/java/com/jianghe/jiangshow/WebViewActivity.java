@@ -2,6 +2,7 @@ package com.jianghe.jiangshow;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -22,6 +23,7 @@ public class WebViewActivity extends Activity {
         currentActivity = this;
         StartScreen.show(this, true);
         super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息栏
         setContentView(R.layout.activity_jiangshow);
 
         /**
