@@ -1,22 +1,26 @@
 package com.jianghe.jiangshow;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.jianghe.com.jianghe.startscreen.StartScreen;
+import com.jianghe.common.commonMethod;
+
 public class WebViewActivity extends Activity {
 
     WebView web = null;
     boolean isLoaded = false;
+    static Activity currentActivity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        currentActivity = this;
+        StartScreen.show(this, true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jiangshow);
 
@@ -57,36 +61,11 @@ public class WebViewActivity extends Activity {
         // 通过addJavascriptInterface()将Java对象映射到JS对象
         //参数1：Javascript对象名
         //参数2：Java对象名
-        web.addJavascriptInterface(new AndroidtoJs(), "JsInterface");//AndroidtoJS类对象映射到js的test对象
+        web.addJavascriptInterface(new commonMethod(), "JsInterface");//AndroidtoJS类对象映射到js的test对象
 
         // 加载url
         web.loadUrl("file:///android_asset/pro/index.html");
 
-    }
-
-    /**
-     * 供js调用的Android方法
-     */
-    public class AndroidtoJs extends Object {
-
-        // 定义JS需要调用的方法
-        // 被JS调用的方法必须加入@JavascriptInterface注解
-
-        // 关闭应用的方法
-        @JavascriptInterface
-        public void exit() {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
-            System.exit(0);
-        }
-
-        //关闭webview的方法
-        @JavascriptInterface
-        public void closeWebview() {
-            //关闭webview的activity
-            WebViewActivity.this.finish();
-        }
     }
 
     /**
@@ -114,5 +93,14 @@ public class WebViewActivity extends Activity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    /**
+     * 获取当前上下文对象的静态方法
+     *
+     * @return
+     */
+    public static Activity getCurrentActivity() {
+        return currentActivity;
     }
 }
