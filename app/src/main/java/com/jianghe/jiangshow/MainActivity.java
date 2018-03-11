@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                     Intent intent = new Intent();
                     intent.setClass(MainActivity.this, WebViewActivity.class);
                     //利用bundle来存取数据
